@@ -1,0 +1,38 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+  DFS5.2:
+    description: Drakkar Forcing Set version 5.2
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    parameters:
+      year:
+        description: year
+        type: int
+        default: 1958
+        min: 1958
+        max: 2015
+    args:
+      urlpath: /work/n01/n01/acc/DFS/DFS5.2/{{ year }}//drowned_*_DFS5.2_y{{ year }}.nc
+      xarray_kwargs:
+          parallel: True
+          combine: by_coords
+
+  eORCA12:
+    description: eORCA12 version 2.4 - NEMO files
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: intake.catalog.local.YAMLFileCatalog
+    args:
+      path: {{ CATALOG_DIR }}/catalog-eORCA12.yaml
+
+  eORCA36:
+    description: eORCA36 - NEMO files
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: intake.catalog.local.YAMLFileCatalog
+    args:
+      path: {{ CATALOG_DIR }}/catalog-eORCA36.yaml

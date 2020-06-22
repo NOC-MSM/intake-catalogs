@@ -1,0 +1,37 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+
+  ORCA0083_N006:
+    description: ORCA0083_N006
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    parameters:
+      grid:
+        description: grid
+        type: str
+        allowed: [T, U, V, W, I]
+        default: T
+      year:
+        description: year
+        type: int
+        default: 1958
+        min: 1958
+        max: 2015
+      time_freq:
+        description: "time frequency (d: 5-day mean, m: monthly mean, y: yearly mean)"
+        type: str
+        allowed: [d, m, y]
+        default: d
+    args:
+      urlpath: /gws/nopw/j04/nemo_vol1/ORCA0083-N006/{{'ANALYSIS' if (year>2012 and time_freq=='m') else 'means'}}/{{ year }}/*{{ time_freq }}*{{ grid }}.nc
+      xarray_kwargs:
+        parallel: True
+        combine: by_coords
+        concat_dim: time_counter
+        data_vars: minimal
+        coords: minimal
+        compat: override

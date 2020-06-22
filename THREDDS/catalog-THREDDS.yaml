@@ -1,0 +1,25 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+
+  ORCA0083_N06:
+    description: ORCA0083_N06 5-day means
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    parameters:
+      grid:
+        description: grid
+        type: str
+        allowed: [T, U, V, I]
+        default: T
+      year:
+        description: year
+        type: int
+        default: 1960
+        min: 1960
+        max: 2015
+    args:
+      urlpath: http://opendap4gws.jasmin.ac.uk/thredds/nemo/dodsC/nemo_clim_agg/ORCA0083-N06_grid_{{ grid }}_{{ year }}
