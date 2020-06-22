@@ -15,8 +15,17 @@ sources:
         default: 1958
         min: 1958
         max: 2015
+      time_freq:
+        description: "time frequency (3H: 3-hour, D: daily)"
+        type: str
+        default: 3H
+        allowed: [3H, D]
     args:
-      urlpath: /work/n01/n01/acc/DFS/DFS5.2/{{ year }}//drowned_*_DFS5.2_y{{ year }}.nc
+      urlpath:
+        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'q2' if time_freq=='3H' else 'radsw'}}_DFS5.2_y{{ year }}.nc
+        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'v10' if time_freq=='3H' else 'radlw'}}_DFS5.2_y{{ year }}.nc
+        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'u10' if time_freq=='3H' else 'precip'}}_DFS5.2_y{{ year }}.nc
+        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'t2' if time_freq=='3H' else 'snow'}}_DFS5.2_y{{ year }}.nc
       xarray_kwargs:
           parallel: True
           combine: by_coords
