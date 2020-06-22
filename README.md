@@ -1,8 +1,8 @@
 # intake-catalogs
 
-Catalogs based on [intake](https://intake.readthedocs.io/en/latest/) and the pugin [intake-xarray](https://intake-xarray.readthedocs.io/en/latest/).
+Catalogs based on [intake](https://intake.readthedocs.io/en/latest/) and the plugin [intake-xarray](https://intake-xarray.readthedocs.io/en/latest/).
 
-## Quick start:
+## Quick start
 Install `intake-xarray`:
 ```
 conda install -c conda-forge intake-xarray
@@ -11,7 +11,7 @@ conda install -c conda-forge intake-xarray
 Import the main catalog:
 ```python
 import intake
-cat = intake.open_catalog('./catalog.yaml')
+cat = intake.open_catalog('https://raw.githubusercontent.com/NOC-MSM/intake-catalogs/master/catalog.yaml')
 ```
 
 Find all available catalogs:
