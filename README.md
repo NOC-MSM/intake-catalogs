@@ -54,4 +54,4 @@ ds = cat.JASMIN.ORCA0083_N006(grid='U', year=1990).to_dask()
 ```
 
 ## Cookbook
-See the [cookbook](./cookbook) folder for a collection of recipes to open datasets.
+Check out the [cookbook](./cookbook) folder for a collection of [https://nbviewer.jupyter.org/github/NOC-MSM/intake-catalogs/tree/master/cookbook/](recipes) to open datasets.
