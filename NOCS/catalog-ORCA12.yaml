@@ -1,0 +1,14 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+
+  sss:
+    description: Sea Surface Salinity for restoring
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /noc/msm/scratch/climate/malmans/DATASETS/ORCA12/DATA/sss_1m.nc
+
