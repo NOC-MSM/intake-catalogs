@@ -4,6 +4,26 @@ plugins:
 
 sources:
 
+  DFS5.2:
+    description: Drakkar Forcing Set version 5.2 (msl from ERAinterim)
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    parameters:
+      year:
+        description: year (msl only available from 1979)
+        type: int
+        default: 1979
+        min: 1958
+        max: 2017
+      field:
+        description: field
+        type: str
+        default: u10
+        allowed: [u10, v10, t2, q2, precip, snow, radsw, radlw, msl]
+    args:
+      urlpath: https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/dodsC/meomopendap/extract/FORCING_ATMOSPHERIQUE/DFS5.2/ALL/drowned_{{ field }}_{{ 'DFS5.2' if field != 'msl' else 'ERAinterim'}}_y{{ year }}.nc
+
   ORCA0083_N06:
     description: ORCA0083_N06 5-day means
     metadata:
