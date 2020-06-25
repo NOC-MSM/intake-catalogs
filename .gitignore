@@ -1,3 +1,6 @@
+### Custom ###
+# Dask
+dask-worker-space/
 
 # Created by https://www.toptal.com/developers/gitignore/api/jupyternotebooks,vim,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=jupyternotebooks,vim,python
