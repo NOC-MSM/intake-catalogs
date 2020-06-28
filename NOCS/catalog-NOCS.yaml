@@ -15,20 +15,13 @@ sources:
         default: 1958
         min: 1958
         max: 2015
-      time_freq:
-        description: "time frequency (3H: 3-hour, D: daily)"
+      field:
+        description: field
         type: str
-        default: 3H
-        allowed: [3H, D]
+        default: precip
+        allowed: [precip, q2, radlw, radsw, snow, t2, u10, v10]
     args:
-      urlpath:
-        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'q2' if time_freq=='3H' else 'radsw'}}_DFS5.2_y{{ year }}.nc
-        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'v10' if time_freq=='3H' else 'radlw'}}_DFS5.2_y{{ year }}.nc
-        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'u10' if time_freq=='3H' else 'precip'}}_DFS5.2_y{{ year }}.nc
-        - /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/drowned_{{'t2' if time_freq=='3H' else 'snow'}}_DFS5.2_y{{ year }}.nc
-      xarray_kwargs:
-          parallel: True
-          combine: by_coords
+      urlpath: /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc' if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc' if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
 
   eORCA12:
     description: eORCA12 version 2.4 - NEMO files
