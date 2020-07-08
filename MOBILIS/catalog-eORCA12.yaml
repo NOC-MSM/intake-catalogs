@@ -1,0 +1,37 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+
+  calving:
+    description: Ice calving
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /hpcdata/scratch/malmans/DATASETS/eORCA12/eORCA12_calving_v2.4.nc
+
+  domain_cfg:
+    description: Domain
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /hpcdata/scratch/malmans/DATASETS/eORCA12/eORCA12_v2.4_domaincfg.nc
+
+  ghflux:
+    description: Geothermal heat flux
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /hpcdata/scratch/malmans/DATASETS/eORCA12/Goutorbe_ghflux.nc
+
+  runoff:
+    description: Runoff
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /hpcdata/scratch/malmans/DATASETS/eORCA12/eORCA12_runoff_v2.4.nc
