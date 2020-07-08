@@ -21,7 +21,7 @@ sources:
       urlpath: /noc/msm/scratch/climate/malmans/DATASETS/eORCA12/eORCA12_v2.4_domaincfg.nc
 
   ghflux:
-    description: Heat flux
+    description: Geothermal heat flux
     metadata:
       catalog_entry_author: Mattia Almansi
     driver: netcdf
