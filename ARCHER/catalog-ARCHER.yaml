@@ -23,3 +23,20 @@ sources:
     args:
       urlpath: /work/n01/n01/acc/DFS/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc' if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc' if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
 
+  eORCA12:
+    description: eORCA12 version 2.4 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog
+    args:
+      path: "{{ CATALOG_DIR }}/catalog-eORCA12.yaml"
+
+  eORCA36:
+    description: eORCA36 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog
+    args:
+      path: "{{ CATALOG_DIR }}/catalog-eORCA36.yaml"
+
+  ORCA12:
+    description: ORCA12 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog
+    args:
+      path: "{{ CATALOG_DIR }}/catalog-ORCA12.yaml"
