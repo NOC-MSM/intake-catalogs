@@ -1,0 +1,37 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+
+  bathymetry:
+    description: Bathymetry
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /work/n01/n01/malmans/DATASETS/eORCA36/Bathymetry_eORCA36_ibimerged_noflag_y9173_smooth5_coastlineO12_seuil15m.nc
+
+  coordinates:
+    description: Coordinates
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /work/n01/n01/malmans/DATASETS/eORCA36/coordinates_ORCA_R36_y9173.nc
+
+  domain_cfg:
+    description: Domain
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /work/n01/n01/malmans/DATASETS/eORCA36/domain_cfg_eORCA36_ibimerged_noflag_y9173_smooth5_coastlineO12_seuil15m.nc
+
+  mesh_mask:
+    description: Mesh mask
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /work/n01/n01/malmans/DATASETS/eORCA36/mesh_mask_eORCA36_ibimerged_noflag_y9173_smooth5_coastlineO12_seuil15m_k1.nc
