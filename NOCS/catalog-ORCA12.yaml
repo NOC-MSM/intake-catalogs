@@ -10,5 +10,5 @@ sources:
       catalog_entry_author: Mattia Almansi
     driver: netcdf
     args:
-      urlpath: /noc/msm/scratch/climate/malmans/DATASETS/ORCA12/DATA/sss_1m.nc
+      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/DATASETS/ORCA12/DATA/sss_1m.nc
 

@@ -18,7 +18,7 @@ sources:
       catalog_entry_author: Mattia Almansi
     driver: netcdf
     args:
-      urlpath: /noc/msm/scratch/climate/malmans/DATASETS/eORCA12/eORCA12_v2.4_domaincfg.nc
+      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/DATASETS/eORCA12/eORCA12_v2.4_domaincfg.nc
 
   ghflux:
     description: Geothermal heat flux
