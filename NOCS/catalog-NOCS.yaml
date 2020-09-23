@@ -40,3 +40,9 @@ sources:
     driver: intake.catalog.local.YAMLFileCatalog
     args:
       path: "{{ CATALOG_DIR }}/catalog-ORCA12.yaml"
+      
+  GSRIDGE:
+    description: Files for GSRIDGE configurations
+    driver: intake.catalog.local.YAMLFileCatalog
+    args:
+      path: "{{ CATALOG_DIR }}/catalog-GSRIDGE.yaml"

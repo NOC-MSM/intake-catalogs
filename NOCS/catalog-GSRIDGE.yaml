@@ -1,0 +1,30 @@
+plugins:
+  source:
+    - module: intake_xarray
+
+sources:
+
+  transition_area_mask:
+    description: Bathymetry to build transition scale factors as Pierre Mathiot for eORCA025
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/DATASETS/GSRIDGE/TRANSITION_AREA/bathymetry_eORCA025-GO6.nc_nocanyon_byhand
+
+  transition_area_mask_in:
+    description: Inner rim bathymetry to build transition scale factors as Pierre Mathiot for eORCA025
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/DATASETS/GSRIDGE/TRANSITION_AREA/bathymetry_eORCA025-GO6_OVF.nc.in.03
+
+  transition_area_mask_out:
+    description: Outer rim bathymetry to build transition scale factors as Pierre Mathiot for eORCA025
+    metadata:
+      catalog_entry_author: Mattia Almansi
+    driver: netcdf
+    args:
+      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/DATASETS/GSRIDGE/TRANSITION_AREA/bathymetry_eORCA025-GO6_OVF.nc.out.01
+
