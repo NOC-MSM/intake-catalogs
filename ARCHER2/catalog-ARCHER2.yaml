@@ -4,7 +4,7 @@ plugins:
 
 sources:
   DFS5.2:
-    description: Drakkar Forcing Set version 5.2 + mean sea level pressure (ERAinterim from 1979 onwards)
+    description: Drakkar Forcing Set version 5.2 + mean sea level pressure (ERA40 before 1979, ERAinterim from 1979 onwards)
     metadata:
       catalog_entry_author: Mattia Almansi
     driver: netcdf
@@ -21,7 +21,7 @@ sources:
         default: precip
         allowed: [msl, precip, q2, radlw, radsw, snow, t2, u10, v10]
     args:
-      urlpath: /work/n01/n01/acc/FORCING/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc' if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc' if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
+      urlpath: /work/n01/n01/acc/FORCING/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc' if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc' if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
 
   eORCA12:
     description: eORCA12 version 2.4 - NEMO files
@@ -33,4 +33,5 @@ sources:
     description: ORCA12 - NEMO files
     driver: intake.catalog.local.YAMLFileCatalog
     args:
-    path: "{{ CATALOG_DIR }}/catalog-ORCA12.yaml"
+      path: "{{ CATALOG_DIR }}/catalog-ORCA12.yaml"
+
