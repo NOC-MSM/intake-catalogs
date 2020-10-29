@@ -8,6 +8,13 @@ sources:
     driver: intake.catalog.local.YAMLFileCatalog
     metadata: {}
 
+  ARCHER2:
+    args:
+      path: "{{ CATALOG_DIR }}/ARCHER/catalog-ARCHER2.yaml"
+    description: ARCHER Dataset Catalog
+    driver: intake.catalog.local.YAMLFileCatalog
+    metadata: {}
+
   JASMIN:
     args:
       path: "{{ CATALOG_DIR }}/JASMIN/catalog-JASMIN.yaml"
