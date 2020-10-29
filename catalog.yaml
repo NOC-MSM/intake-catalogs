@@ -11,7 +11,7 @@ sources:
   ARCHER2:
     args:
       path: "{{ CATALOG_DIR }}/ARCHER2/catalog-ARCHER2.yaml"
-    description: ARCHER Dataset Catalog
+    description: ARCHER2 Dataset Catalog
     driver: intake.catalog.local.YAMLFileCatalog
     metadata: {}
 
