@@ -1,13 +1,6 @@
 description: 'NOC Master Data Catalog'
 sources:
 
-  ARCHER:
-    args:
-      path: '{{ CATALOG_DIR }}/ARCHER/catalog-ARCHER.yaml'
-    description: ARCHER Dataset Catalog
-    driver: intake.catalog.local.YAMLFileCatalog
-    metadata: {}
-
   ARCHER2:
     args:
       path: '{{ CATALOG_DIR }}/ARCHER2/catalog-ARCHER2.yaml'
