@@ -22,7 +22,7 @@ sources:
         min: 1958
         max: 2015
       time_freq:
-        description: "time frequency (d: 5-day mean, m: monthly mean, y: yearly mean)"
+        description: time frequency (d: 5-day mean, m: monthly mean, y: yearly mean)
         type: str
         allowed: [d, m, y]
         default: d
