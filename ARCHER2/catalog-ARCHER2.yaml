@@ -1,37 +1,45 @@
 plugins:
   source:
-    - module: intake_xarray
-
+  - module: intake_xarray
 sources:
   DFS5.2:
-    description: Drakkar Forcing Set version 5.2 + mean sea level pressure (ERA40 before 1979, ERAinterim from 1979 onwards)
+    args:
+      urlpath: /work/n01/n01/acc/FORCING/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc'
+        if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc'
+        if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
+    description: Drakkar Forcing Set version 5.2 + mean sea level pressure (ERA40
+      before 1979, ERAinterim from 1979 onwards)
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
     parameters:
-      year:
-        description: year
-        type: int
-        default: 1958
-        min: 1958
-        max: 2017
       field:
+        allowed:
+        - msl
+        - precip
+        - q2
+        - radlw
+        - radsw
+        - snow
+        - t2
+        - u10
+        - v10
+        default: precip
         description: field
         type: str
-        default: precip
-        allowed: [msl, precip, q2, radlw, radsw, snow, t2, u10, v10]
-    args:
-      urlpath: /work/n01/n01/acc/FORCING/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc' if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc' if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
-
-  eORCA12:
-    description: eORCA12 version 2.4 - NEMO files
-    driver: intake.catalog.local.YAMLFileCatalog
-    args:
-      path: '{{ CATALOG_DIR }}/catalog-eORCA12.yaml'
-
+      year:
+        default: 1958
+        description: year
+        max: 2017
+        min: 1958
+        type: int
   ORCA12:
-    description: ORCA12 - NEMO files
-    driver: intake.catalog.local.YAMLFileCatalog
     args:
       path: '{{ CATALOG_DIR }}/catalog-ORCA12.yaml'
-
+    description: ORCA12 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog
+  eORCA12:
+    args:
+      path: '{{ CATALOG_DIR }}/catalog-eORCA12.yaml'
+    description: eORCA12 version 2.4 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog

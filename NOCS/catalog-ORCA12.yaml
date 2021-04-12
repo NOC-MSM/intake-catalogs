@@ -1,14 +1,11 @@
 plugins:
   source:
-    - module: intake_xarray
-
+  - module: intake_xarray
 sources:
-
   sss:
-    description: Sea Surface Salinity for restoring
-    metadata:
-      catalog_entry_author: Mattia Almansi
-    driver: netcdf
     args:
       urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/DATASETS/ORCA12/DATA/sss_1m.nc
-
+    description: Sea Surface Salinity for restoring
+    driver: netcdf
+    metadata:
+      catalog_entry_author: Mattia Almansi

@@ -1,77 +1,98 @@
 plugins:
   source:
-    - module: intake_xarray
-
+  - module: intake_xarray
 sources:
   DFS5.2:
+    args:
+      urlpath: /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc'
+        if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc'
+        if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
     description: Drakkar Forcing Set version 5.2
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
     parameters:
-      year:
-        description: year
-        type: int
-        default: 1958
-        min: 1958
-        max: 2015
       field:
+        allowed:
+        - precip
+        - q2
+        - radlw
+        - radsw
+        - snow
+        - t2
+        - u10
+        - v10
+        default: precip
         description: field
         type: str
-        default: precip
-        allowed: [precip, q2, radlw, radsw, snow, t2, u10, v10]
-    args:
-      urlpath: /noc/msm/scratch/climate/atb299/DFS5.2/{{ year }}/{{'drowned_'+field+'_DFS5.2_y'+'{}'.format(year)+'.nc' if field!= 'msl' else ('drowned_'+field+'_ERAinterim_y'+'{}'.format(year)+'.nc' if  year>=1979 else field+'.'+'{}'.format(year)+'.ash.nc')}}
-
-  eORCA12:
-    description: eORCA12 version 2.4 - NEMO files
-    driver: intake.catalog.local.YAMLFileCatalog
-    args:
-      path: '{{ CATALOG_DIR }}/catalog-eORCA12.yaml'
-
-  eORCA36:
-    description: eORCA36 - NEMO files
-    driver: intake.catalog.local.YAMLFileCatalog
-    args:
-      path: '{{ CATALOG_DIR }}/catalog-eORCA36.yaml'
-
-  ORCA12:
-    description: ORCA12 - NEMO files
-    driver: intake.catalog.local.YAMLFileCatalog
-    args:
-      path: '{{ CATALOG_DIR }}/catalog-ORCA12.yaml'
-      
+      year:
+        default: 1958
+        description: year
+        max: 2015
+        min: 1958
+        type: int
   GSRIDGE:
+    args:
+      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/SHARED/{{ name }}/{{ 'GRID'
+        if grid in ['domain_cfg', 'mesh_mask'] else 'OUTPUT/*' }}/{{ name }}_{{ ''
+        if grid in ['domain_cfg', 'mesh_mask'] else time_freq + '_'}}*{{ grid if grid
+        in ['domain_cfg', 'mesh_mask'] else ('icemod' if grid == 'ice' else '_' +
+        grid) + '_' }}*.nc
+      xarray_kwargs:
+        compat: override
+        concat_dim: time_counter
+        coords: minimal
+        data_vars: minimal
+        decode_timedelta: false
+        parallel: parallel
     description: IMMERSE GSRIDGE regional configurations
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
     parameters:
-      name:
-        description: name of the configuration
-        type: str
-        default: GSRIDGE36Z
-        allowed: [GSRIDGE36Z, GSRIDGE36Zx2]
-      time_freq:
-        description: time frequency
-        type: str
-        default: 5d_mean
-        allowed: [5d_mean, 3h_snap]
       grid:
+        allowed:
+        - domain_cfg
+        - mesh_mask
+        - T
+        - U
+        - V
+        - W
+        - ice
+        default: T
         description: grid
         type: str
-        default: T
-        allowed: [domain_cfg, mesh_mask, T, U, V, W, ice]
+      name:
+        allowed:
+        - GSRIDGE36Z
+        - GSRIDGE36Zx2
+        default: GSRIDGE36Z
+        description: name of the configuration
+        type: str
       parallel:
-        description: If True, the open and preprocess steps of this function will be performed in parallel using `dask.delayed`.
+        default: true
+        description: If True, the open and preprocess steps of this function will
+          be performed in parallel using `dask.delayed`.
         type: bool
-        default: True
+      time_freq:
+        allowed:
+        - 5d_mean
+        - 3h_snap
+        default: 5d_mean
+        description: time frequency
+        type: str
+  ORCA12:
     args:
-      urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/SHARED/{{ name }}/{{ 'GRID' if grid in ['domain_cfg', 'mesh_mask'] else 'OUTPUT/*' }}/{{ name }}_{{ '' if grid in ['domain_cfg', 'mesh_mask'] else time_freq + '_'}}*{{ grid if grid in ['domain_cfg', 'mesh_mask'] else ('icemod' if grid == 'ice' else '_' + grid) + '_' }}*.nc
-      xarray_kwargs:
-        concat_dim: time_counter
-        data_vars: minimal
-        coords: minimal
-        compat: override
-        decode_timedelta: False
-        parallel: parallel
+      path: '{{ CATALOG_DIR }}/catalog-ORCA12.yaml'
+    description: ORCA12 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog
+  eORCA12:
+    args:
+      path: '{{ CATALOG_DIR }}/catalog-eORCA12.yaml'
+    description: eORCA12 version 2.4 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog
+  eORCA36:
+    args:
+      path: '{{ CATALOG_DIR }}/catalog-eORCA36.yaml'
+    description: eORCA36 - NEMO files
+    driver: intake.catalog.local.YAMLFileCatalog

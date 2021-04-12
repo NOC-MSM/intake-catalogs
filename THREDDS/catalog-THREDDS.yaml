@@ -1,45 +1,57 @@
 plugins:
   source:
-    - module: intake_xarray
-
+  - module: intake_xarray
 sources:
-
   DFS5.2:
+    args:
+      urlpath: https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/dodsC/meomopendap/extract/FORCING_ATMOSPHERIQUE/DFS5.2/ALL/drowned_{{
+        field }}_{{ 'DFS5.2' if field != 'msl' else 'ERAinterim'}}_y{{ year }}.nc
     description: Drakkar Forcing Set version 5.2 (msl from ERAinterim)
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
     parameters:
-      year:
-        description: year (msl only available from 1979)
-        type: int
-        default: 1979
-        min: 1958
-        max: 2017
       field:
+        allowed:
+        - u10
+        - v10
+        - t2
+        - q2
+        - precip
+        - snow
+        - radsw
+        - radlw
+        - msl
+        default: u10
         description: field
         type: str
-        default: u10
-        allowed: [u10, v10, t2, q2, precip, snow, radsw, radlw, msl]
-    args:
-      urlpath: https://ige-meom-opendap.univ-grenoble-alpes.fr/thredds/dodsC/meomopendap/extract/FORCING_ATMOSPHERIQUE/DFS5.2/ALL/drowned_{{ field }}_{{ 'DFS5.2' if field != 'msl' else 'ERAinterim'}}_y{{ year }}.nc
-
+      year:
+        default: 1979
+        description: year (msl only available from 1979)
+        max: 2017
+        min: 1958
+        type: int
   ORCA0083_N06:
+    args:
+      urlpath: http://opendap4gws.jasmin.ac.uk/thredds/nemo/dodsC/nemo_clim_agg/ORCA0083-N06_grid_{{
+        grid }}_{{ year }}
     description: ORCA0083_N06 5-day means
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
     parameters:
       grid:
+        allowed:
+        - T
+        - U
+        - V
+        - I
+        default: T
         description: grid
         type: str
-        allowed: [T, U, V, I]
-        default: T
       year:
-        description: year
-        type: int
         default: 1960
-        min: 1960
+        description: year
         max: 2015
-    args:
-      urlpath: http://opendap4gws.jasmin.ac.uk/thredds/nemo/dodsC/nemo_clim_agg/ORCA0083-N06_grid_{{ grid }}_{{ year }}
+        min: 1960
+        type: int

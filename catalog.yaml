@@ -1,34 +1,29 @@
-description: 'NOC Master Data Catalog'
+description: NOC Master Data Catalog
 sources:
-
   ARCHER2:
     args:
       path: '{{ CATALOG_DIR }}/ARCHER2/catalog-ARCHER2.yaml'
     description: ARCHER2 Dataset Catalog
     driver: intake.catalog.local.YAMLFileCatalog
     metadata: {}
-
   JASMIN:
     args:
       path: '{{ CATALOG_DIR }}/JASMIN/catalog-JASMIN.yaml'
     description: JASMIN Dataset Catalog
     driver: intake.catalog.local.YAMLFileCatalog
     metadata: {}
-    
   MOBILIS:
     args:
       path: '{{ CATALOG_DIR }}/MOBILIS/catalog-MOBILIS.yaml'
     description: MOBILIS Dataset Catalog
     driver: intake.catalog.local.YAMLFileCatalog
     metadata: {}
-
   NOCS:
     args:
       path: '{{ CATALOG_DIR }}/NOCS/catalog-NOCS.yaml'
     description: NOCS Dataset Catalog
     driver: intake.catalog.local.YAMLFileCatalog
     metadata: {}
-  
   THREDDS:
     args:
       path: '{{ CATALOG_DIR }}/THREDDS/catalog-THREDDS.yaml'

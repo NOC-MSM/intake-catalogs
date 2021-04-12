@@ -1,37 +1,32 @@
 plugins:
   source:
-    - module: intake_xarray
-
+  - module: intake_xarray
 sources:
-
   bathymetry:
-    description: Bathymetry
-    metadata:
-      catalog_entry_author: Mattia Almansi
-    driver: netcdf
     args:
       urlpath: /noc/msm/scratch/climate/atb299/IMMERSE/Bathymetry_eORCA36_ibimerged_noflag_y9173_smooth5_coastlineO12_seuil15m.nc
-
-  coordinates:
-    description: Coordinates
+    description: Bathymetry
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
+  coordinates:
     args:
       urlpath: /noc/msm/scratch/climate/atb299/IMMERSE/coordinates_ORCA_R36_y9173.nc
-
-  domain_cfg:
-    description: Domain
+    description: Coordinates
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
+  domain_cfg:
     args:
       urlpath: /noc/msm/scratch/climate/atb299/IMMERSE/domain_cfg_eORCA36_ibimerged_noflag_y9173_smooth5_coastlineO12_seuil15m.nc
-
-  mesh_mask:
-    description: Mesh mask
+    description: Domain
+    driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
-    driver: netcdf
+  mesh_mask:
     args:
       urlpath: /noc/msm/scratch/climate/atb299/IMMERSE/mesh_mask_eORCA36_ibimerged_noflag_y9173_smooth5_coastlineO12_seuil15m_k1.nc
+    description: Mesh mask
+    driver: netcdf
+    metadata:
+      catalog_entry_author: Mattia Almansi
