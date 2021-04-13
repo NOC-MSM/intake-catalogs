@@ -34,10 +34,10 @@ sources:
   GSRIDGE:
     args:
       urlpath: /noc/msm/scratch/nemo2/IMMERSE/malmans/SHARED/{{ name }}/{{ 'GRID'
-        if grid in ['domain_cfg', 'mesh_mask'] else 'OUTPUT/*' }}/{{ name }}_{{ ''
-        if grid in ['domain_cfg', 'mesh_mask'] else time_freq + '_'}}*{{ grid if grid
-        in ['domain_cfg', 'mesh_mask'] else ('icemod' if grid == 'ice' else '_' +
-        grid) + '_' }}*.nc
+        if grid in ['domain_cfg', 'mesh_mask'] else 'OUTPUT/' + year }}/{{ name }}_{{
+        '' if grid in ['domain_cfg', 'mesh_mask'] else time_freq + '_'}}*{{ grid if
+        grid in ['domain_cfg', 'mesh_mask'] else ('icemod' if grid == 'ice' else '_'
+        + grid) + '_' }}*.nc
       xarray_kwargs:
         compat: override
         concat_dim: time_counter
@@ -80,6 +80,18 @@ sources:
         - 3h_snap
         default: 5d_mean
         description: time frequency
+        type: str
+      year:
+        allowed:
+        - '*'
+        - 2007
+        - 2008
+        - 2009
+        - 2010
+        - 2011
+        - 2012
+        default: '*'
+        description: year
         type: str
   ORCA12:
     args:
