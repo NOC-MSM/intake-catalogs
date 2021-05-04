@@ -40,8 +40,6 @@ sources:
         + grid) + '_' }}*.nc
       xarray_kwargs:
         compat: override
-        concat_dim: time_counter
-        combine: nested
         coords: minimal
         data_vars: minimal
         decode_timedelta: false
