@@ -66,6 +66,7 @@ sources:
         - GSRIDGE36Z
         - GSRIDGE36Zx2
         - GSRIDGE36S
+        - GSRIDGE36Sx2
         default: GSRIDGE36Z
         description: name of the configuration
         type: str
