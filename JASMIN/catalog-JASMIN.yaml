@@ -42,3 +42,46 @@ sources:
         max: 2015
         min: 1958
         type: int
+
+  ORCHESTRA_ZPS_CORE2NYF:
+    args:
+      urlpath: /bodc/BAS210039/CORE2NYF-ORCH0083-LIM3/{{ year }}/{{ time_freq }}/{{ grid }}/*.nc
+      xarray_kwargs:
+        compat: override
+        coords: minimal
+        data_vars: minimal
+        decode_timedelta: false
+        parallel: parallel
+    description: TODO
+    driver: netcdf
+    metadata:
+      catalog_entry_author: Adam Blaker
+    parameters:
+      grid:
+        allowed:
+        - I
+        - T
+        - U
+        - V
+        default: T
+        description: grid
+        type: str
+      parallel:
+        default: true
+        description: If True, the open and preprocess steps of this function will
+          be performed in parallel using `dask.delayed`.
+        type: bool
+      time_freq:
+        allowed:
+        - d01
+        - d05
+        - m01
+        default: d05
+        description: 'time frequency (d01: daily mean, d05: 5-day mean, m01: monthly mean)'
+        type: str
+      year:
+        default: 1987
+        description: year
+        min: 1951
+        max: 1987
+        type: int
