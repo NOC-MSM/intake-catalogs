@@ -13,7 +13,7 @@ sources:
         coords: minimal
         data_vars: minimal
         parallel: true
-    description: ORCA0083_N006: DFS5.2-forced ORCA12 simulation from 1958-2015. There was an unintended change from EOS80 ot TEOS10 during 1987, but SSS restoration towards PSU continued. 
+    description: ORCA0083_N006   DFS5.2-forced ORCA12 simulation from 1958-2015. There was an unintended change from EOS80 ot TEOS10 during 1987, but SSS restoration towards PSU continued. 
     driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
@@ -52,7 +52,7 @@ sources:
         data_vars: minimal
         decode_timedelta: false
         parallel: parallel
-    description: ORCHESTRA_ZPS: This is the CORE2 normal year forced simulation. It is a Southern Ocean domain consistent with the eORCA12, run with NEMO v3.6.
+    description: ORCHESTRA_ZPS   This is the CORE2 normal year forced simulation. It is a Southern Ocean domain consistent with the eORCA12, run with NEMO v3.6.
     driver: netcdf
     metadata:
       catalog_entry_author: Adam Blaker
