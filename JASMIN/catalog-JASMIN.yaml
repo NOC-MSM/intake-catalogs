@@ -45,7 +45,13 @@ sources:
 
   ORCHESTRA_ZPS_CORE2NYF:
     args:
-      urlpath: /bodc/BAS210039/CORE2NYF-ORCH0083-LIM3/{{ year }}/{{ time_freq }}/{{ grid }}/*.nc
+      urlpath: /{{ "gws/nopw/j04/nemo_vol3/atb299/ORCHESTRA/DOMAINS/EXP_ZPS" if grid in ["domain_cfg", "mesh_mask"] else "bodc/BAS210039/CORE2NYF-ORCH0083-LIM3" }}/{{ 
+        "" if grid in ["domain_cfg", "mesh_mask"] else year }}{{
+        "" if grid in ["domain_cfg", "mesh_mask"] else "/d01/" if time_freq == "daily" else "/m01/" if time_freq == "monthly" else "/d05/"}}{{ 
+        "" if grid in ["domain_cfg", "mesh_mask"] else grid }}/{{
+        grid if grid in ["domain_cfg", "mesh_mask"] else "*"}}{{
+        "_zps" if grid == "domain_cfg" else ""
+        }}.nc*
       xarray_kwargs:
         compat: override
         coords: minimal
@@ -59,10 +65,13 @@ sources:
     parameters:
       grid:
         allowed:
+        - domain_cfg
+        - mesh_mask
         - I
         - T
         - U
         - V
+        - W
         default: T
         description: grid
         type: str
@@ -73,11 +82,11 @@ sources:
         type: bool
       time_freq:
         allowed:
-        - d01
-        - d05
-        - m01
-        default: d05
-        description: 'time frequency (d01: daily mean, d05: 5-day mean, m01: monthly mean)'
+        - daily
+        - 5-day
+        - monthly
+        default: 5-day
+        description: 'time frequency (averages)'
         type: str
       year:
         default: 1987
