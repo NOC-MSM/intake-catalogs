@@ -13,7 +13,7 @@ sources:
         coords: minimal
         data_vars: minimal
         parallel: true
-    description: ORCA0083_N006
+    description: ORCA0083_N006   DFS5.2-forced ORCA12 simulation from 1958-2015. There was an unintended change from EOS80 ot TEOS10 during 1987, but SSS restoration towards PSU continued. 
     driver: netcdf
     metadata:
       catalog_entry_author: Mattia Almansi
@@ -41,4 +41,56 @@ sources:
         description: year
         max: 2015
         min: 1958
+        type: int
+
+  ORCHESTRA_ZPS_CORE2NYF:
+    args:
+      urlpath: /{{ "gws/nopw/j04/nemo_vol3/atb299/ORCHESTRA/DOMAINS/EXP_ZPS" if grid in ["domain_cfg", "mesh_mask"] else "bodc/BAS210039/CORE2NYF-ORCH0083-LIM3" }}/{{ 
+        "" if grid in ["domain_cfg", "mesh_mask"] else year }}{{
+        "" if grid in ["domain_cfg", "mesh_mask"] else "/d01/" if time_freq == "daily" else "/m01/" if time_freq == "monthly" else "/d05/"}}{{ 
+        "" if grid in ["domain_cfg", "mesh_mask"] else grid }}/{{
+        grid if grid in ["domain_cfg", "mesh_mask"] else "*"}}{{
+        "_zps" if grid == "domain_cfg" else ""
+        }}.nc*
+      xarray_kwargs:
+        compat: override
+        coords: minimal
+        data_vars: minimal
+        decode_timedelta: false
+        parallel: parallel
+    description: ORCHESTRA_ZPS   This is the CORE2 normal year forced simulation. It is a Southern Ocean domain consistent with the eORCA12, run with NEMO v3.6.
+    driver: netcdf
+    metadata:
+      catalog_entry_author: Adam Blaker
+    parameters:
+      grid:
+        allowed:
+        - domain_cfg
+        - mesh_mask
+        - I
+        - T
+        - U
+        - V
+        - W
+        default: T
+        description: grid
+        type: str
+      parallel:
+        default: true
+        description: If True, the open and preprocess steps of this function will
+          be performed in parallel using `dask.delayed`.
+        type: bool
+      time_freq:
+        allowed:
+        - daily
+        - 5-day
+        - monthly
+        default: 5-day
+        description: 'time frequency (averages)'
+        type: str
+      year:
+        default: 1987
+        description: year
+        min: 1951
+        max: 1987
         type: int
